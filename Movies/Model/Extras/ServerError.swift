@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+public enum ServerError: Error {
+    case notFound
+    case badRequest
+    case unauthorized
+    case unrecognized
+
+    public func description() -> String {
+        switch self {
+            case .notFound:
+                return "Not Found"
+            case .badRequest:
+                return "Bad Request"
+            case .unauthorized:
+                return "Unauthorized"
+            case .unrecognized:
+                return "Unrecognized"
+        }
+    }
+}

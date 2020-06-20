@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+public enum ImplementationError: Error {
+    case urlError
+    case unrecognized
+    case dataError
+
+    public func description() -> String {
+        switch self {
+            case .urlError:
+                return "URL Error"
+            case .unrecognized:
+                return "Unrecognized Error"
+            case .dataError:
+                return "Data Error"
+        }
+    }
+}

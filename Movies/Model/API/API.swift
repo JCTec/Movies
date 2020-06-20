@@ -1,5 +1,5 @@
 //
-//  MovieAPI.swift
+//  API.swift
 //  Movies
 //
 //  Created by Juan Carlos on 19/06/20.
@@ -10,30 +10,36 @@ import Foundation
 
 
 class API {
+    // MARK: - APISettings
+    
+    /**
+        The singleton representing settings utilized in the API calls and API functions.
+
+        An example use of settings:
+
+            API.settings.apiKey
+    */
     static let settings: APISettings = APISettings()
-    static let movie: MovieListAPI = MovieAPI()
+    
+    // MARK: - MovieAPI
+    
+    /**
+        The singleton representing individual movie API calls and API functions.
+
+        An example use of settings:
+
+            API.movie.find(id: 1234) {}
+    */
+    static let movie: MovieAPI = MovieAPI()
+    
+    // MARK: - MovieListAPI
+    
+    /**
+        The singleton representing the list of movies this class contains API calls and API functions.
+
+        An example use of settings:
+
+            API.movie.search(query: "search query") {}
+    */
     static let lists: MovieListAPI = MovieListAPI()
-    
-    public static func urlRequest(_ url: String, token: String?, httpMethod: HTTPMethod, parameters: [String: String]? = nil) -> URLRequest? {
-        
-        guard let urlToUse = URL(string: url) else { return nil }
-        
-        var urlRequest = URLRequest(url: urlToUse, cachePolicy:
-            .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30.0)
-        
-        urlRequest.httpMethod = httpMethod.toString()
-        
-        if httpMethod == .post {
-            urlRequest.httpBody = parameters?.percentEscaped().data(using: .utf8)
-        }
-        
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        if let tok = token {
-            urlRequest.setValue("Bearer \(tok)", forHTTPHeaderField: "Authorization")
-        }
-        
-        return urlRequest
-    }
-    
 }

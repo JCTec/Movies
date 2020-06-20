@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+enum CKError: Error {
+    case unrecognized
+}
