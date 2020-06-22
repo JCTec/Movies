@@ -68,6 +68,8 @@
 		49E1283A249F36D900123642 /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E12839249F36D900123642 /* SectionViewModel.swift */; };
 		49E1284224A014F200123642 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E1284124A014F200123642 /* ImageHelper.swift */; };
 		49E1284424A019EA00123642 /* PosterSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E1284324A019EA00123642 /* PosterSize.swift */; };
+		49E32EB924A1AF35008489CE /* MovieCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E32EB824A1AF35008489CE /* MovieCache.swift */; };
+		49E32EBB24A1B115008489CE /* CastAndCrewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E32EBA24A1B115008489CE /* CastAndCrewCollectionViewCell.swift */; };
 		49EE434724A0A5E5000B4A27 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE434624A0A5E5000B4A27 /* DetailViewController.swift */; };
 		49EE434924A0BC2C000B4A27 /* UIViewController+PopMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE434824A0BC2C000B4A27 /* UIViewController+PopMe.swift */; };
 		49EE434C24A0CA2E000B4A27 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EE434B24A0CA2E000B4A27 /* UIImage+Resize.swift */; };
@@ -128,7 +130,7 @@
 /* Begin PBXFileReference section */
 		491DD112249DDC9000EF6E9D /* Movie+Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Serializer.swift"; sourceTree = "<group>"; };
 		49466CF124A06FF40036277F /* UIView+RoundTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundTo.swift"; sourceTree = "<group>"; };
-		494AD044249D5A190088A772 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		494AD044249D5A190088A772 /* YoYo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoYo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494AD047249D5A190088A772 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		494AD049249D5A190088A772 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		494AD051249D5A190088A772 /* Movies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Movies.xcdatamodel; sourceTree = "<group>"; };
@@ -195,6 +197,8 @@
 		49E1283D24A0149100123642 /* Movies-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Movies-Bridging-Header.h"; sourceTree = "<group>"; };
 		49E1284124A014F200123642 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		49E1284324A019EA00123642 /* PosterSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterSize.swift; sourceTree = "<group>"; };
+		49E32EB824A1AF35008489CE /* MovieCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCache.swift; sourceTree = "<group>"; };
+		49E32EBA24A1B115008489CE /* CastAndCrewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAndCrewCollectionViewCell.swift; sourceTree = "<group>"; };
 		49EE434624A0A5E5000B4A27 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		49EE434824A0BC2C000B4A27 /* UIViewController+PopMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PopMe.swift"; sourceTree = "<group>"; };
 		49EE434B24A0CA2E000B4A27 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
@@ -287,7 +291,7 @@
 		494AD045249D5A190088A772 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				494AD044249D5A190088A772 /* Movies.app */,
+				494AD044249D5A190088A772 /* YoYo.app */,
 				494AD05D249D5A1B0088A772 /* MoviesTests.xctest */,
 				494AD068249D5A1B0088A772 /* MoviesUITests.xctest */,
 			);
@@ -350,7 +354,9 @@
 			children = (
 				4964226A24A040FE003B4225 /* Detail */,
 				4964226924A040F3003B4225 /* Search */,
-				49E1281A249F206200123642 /* Movies */,
+				49E1282E249F2C3600123642 /* Section */,
+				49E1281C249F207700123642 /* Vertical */,
+				49E1281B249F207100123642 /* Horizontal */,
 				49E12824249F289D00123642 /* Favourite */,
 				49E12821249F281C00123642 /* Navigation */,
 				494AD084249D64510088A772 /* Home */,
@@ -362,7 +368,9 @@
 			isa = PBXGroup;
 			children = (
 				4964227E24A04F19003B4225 /* Search */,
-				49E12837249F36B400123642 /* Movies */,
+				4964228324A0531E003B4225 /* MovieList */,
+				49E12838249F36C100123642 /* Section */,
+				49F2FD4F24A0812000F3026F /* Movie */,
 				49E12811249F101E00123642 /* Detail */,
 				49E1280E249F0CAE00123642 /* Favourite */,
 				494AD086249D645C0088A772 /* Home */,
@@ -453,6 +461,7 @@
 				494AD09E249D7CE80088A772 /* Movie.swift */,
 				494AD0AE249D98150088A772 /* ListMovie.swift */,
 				49FB357D249E7B6900204912 /* FavouriteMovie.swift */,
+				49E32EB824A1AF35008489CE /* MovieCache.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -499,6 +508,7 @@
 			children = (
 				4964226E24A04508003B4225 /* Detail.storyboard */,
 				49EE434624A0A5E5000B4A27 /* DetailViewController.swift */,
+				49E32EBA24A1B115008489CE /* CastAndCrewCollectionViewCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -576,16 +586,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		49E1281A249F206200123642 /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-				49E1282E249F2C3600123642 /* Section */,
-				49E1281C249F207700123642 /* Vertical */,
-				49E1281B249F207100123642 /* Horizontal */,
-			);
-			path = Movies;
-			sourceTree = "<group>";
-		};
 		49E1281B249F207100123642 /* Horizontal */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,16 +629,6 @@
 				49E1282F249F2C5D00123642 /* SectionCollectionViewCell.swift */,
 			);
 			path = Section;
-			sourceTree = "<group>";
-		};
-		49E12837249F36B400123642 /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-				4964228324A0531E003B4225 /* MovieList */,
-				49E12838249F36C100123642 /* Section */,
-				49F2FD4F24A0812000F3026F /* Movie */,
-			);
-			path = Movies;
 			sourceTree = "<group>";
 		};
 		49E12838249F36C100123642 /* Section */ = {
@@ -791,6 +781,7 @@
 				494AD041249D5A190088A772 /* Frameworks */,
 				494AD042249D5A190088A772 /* Resources */,
 				3FD525E5C65261058C0AAD1F /* [CP] Embed Pods Frameworks */,
+				49EE434E24A19DC9000B4A27 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -798,7 +789,7 @@
 			);
 			name = Movies;
 			productName = Movies;
-			productReference = 494AD044249D5A190088A772 /* Movies.app */;
+			productReference = 494AD044249D5A190088A772 /* YoYo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		494AD05C249D5A1B0088A772 /* MoviesTests */ = {
@@ -974,6 +965,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Movies/Pods-Movies-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		49EE434E24A19DC9000B4A27 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1037,10 +1045,12 @@
 				49E12836249F345700123642 /* Navigation.swift in Sources */,
 				49E1283A249F36D900123642 /* SectionViewModel.swift in Sources */,
 				494AD04A249D5A190088A772 /* SceneDelegate.swift in Sources */,
+				49E32EBB24A1B115008489CE /* CastAndCrewCollectionViewCell.swift in Sources */,
 				49F2FD4E24A07B6500F3026F /* GenreAPI.swift in Sources */,
 				49F7070F24A03245004E0179 /* MovieColor.swift in Sources */,
 				4964227224A046F5003B4225 /* SearchViewController.swift in Sources */,
 				49EE434C24A0CA2E000B4A27 /* UIImage+Resize.swift in Sources */,
+				49E32EB924A1AF35008489CE /* MovieCache.swift in Sources */,
 				49E12810249F0CBE00123642 /* FavouriteViewModel.swift in Sources */,
 				49E1284424A019EA00123642 /* PosterSize.swift in Sources */,
 				494AD0A7249D82730088A772 /* API+URLRequest.swift in Sources */,
@@ -1212,7 +1222,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jctechnologies.Movies;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YoYo;
 				SWIFT_OBJC_BRIDGING_HEADER = "Movies/Movies-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1236,7 +1246,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jctechnologies.Movies;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = YoYo;
 				SWIFT_OBJC_BRIDGING_HEADER = "Movies/Movies-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1261,7 +1271,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Movies.app/Movies";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoYo.app/YoYo";
 			};
 			name = Debug;
 		};
@@ -1283,7 +1293,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Movies.app/Movies";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoYo.app/YoYo";
 			};
 			name = Release;
 		};

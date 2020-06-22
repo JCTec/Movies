@@ -11,14 +11,14 @@ import UIKit
 
 // MARK: - NavigationController
 class NavigationController: UITabBarController {
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBar.tintColor = MovieStaticColors.yellow
-        
+
         tabBar.items?[0].image = HomeViewController.tabImage
         tabBar.items?[0].selectedImage = HomeViewController.selectedImage
-        
+
         if #available(iOS 13.0, *) {
             tabBar.items?[1].image = FavouriteViewController.tabImage
             tabBar.items?[1].selectedImage = FavouriteViewController.selectedImage

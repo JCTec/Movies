@@ -27,7 +27,7 @@ public extension UIView {
         layer.shadowOffset = offset ?? CGSize.zero
         layer.shadowRadius = radius
     }
-    
+
     func removeShadow() {
         layer.shadowColor = UIColor.clear.cgColor
         layer.shadowOpacity = 0.0

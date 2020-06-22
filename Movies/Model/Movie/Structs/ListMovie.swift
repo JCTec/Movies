@@ -15,7 +15,7 @@ public struct MovieResultData: Codable {
     public let totalPages: Int
     public let results: [Movie]
     public let dates: Dates?
-    
+
     enum CodingKeys: String, CodingKey {
         case page = "page"
         case totalResults = "total_results"
@@ -39,8 +39,8 @@ public struct Dates: Codable {
     public let minimum: String
 
     enum CodingKeys: String, CodingKey {
-        case maximum = "maximum"
-        case minimum = "minimum"
+        case maximum
+        case minimum
     }
 
     public init(maximum: String, minimum: String) {

@@ -16,10 +16,9 @@ public class FavouriteMovie: NSManagedObject {
     @NSManaged var data: String
 }
 
-
 // MARK: - getMoviesFetchRequest
 extension FavouriteMovie {
-    
+
     /**
         The Fetch Request for the favourite movie list.
 
@@ -29,9 +28,9 @@ extension FavouriteMovie {
     */
     static func getMoviesFetchRequest() -> NSFetchRequest<FavouriteMovie> {
         let request: NSFetchRequest<FavouriteMovie> = NSFetchRequest<FavouriteMovie>(entityName: "FavouriteMovie")
-        
+
         request.sortDescriptors = [NSSortDescriptor(key: "movieID", ascending: true)]
-        
+
         return request
     }
 }

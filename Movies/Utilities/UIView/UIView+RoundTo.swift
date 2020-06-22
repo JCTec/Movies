@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension UIView {
-    
+
     /// Set rounded corners to button.
     ///
     /// - Parameters:

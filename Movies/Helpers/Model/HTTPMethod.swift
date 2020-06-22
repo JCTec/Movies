@@ -11,7 +11,7 @@ import Foundation
 // MARK: - HTTPMethod
 enum HTTPMethod {
     case get, head, post, put, delete, connect, options, trace, patch
-    
+
     func toString() -> String {
         switch self {
             case .get:

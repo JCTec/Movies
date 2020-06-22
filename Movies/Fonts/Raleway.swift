@@ -72,9 +72,9 @@ public enum Raleway {
 
     public func font(size: CGFloat) -> UIFont {
         let plus = CGFloat(UserDefaults.standard.float(forKey: "plusFontSize"))
-        
+
         guard let fontToUse = UIFont(name: fontName(), size: size + plus) else { return UIFont.systemFont(ofSize: size) }
-        
+
         return fontToUse
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension String {
-    
+
     /// This function lets you easily perform a segue in a given UIViewController
     ///
     /// Usage:
@@ -30,8 +30,7 @@ public extension String {
                 view.performSegue(withIdentifier: self, sender: nil)
             }
         #endif
-        
 
     }
-    
+
 }

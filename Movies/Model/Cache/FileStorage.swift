@@ -10,7 +10,7 @@ import Foundation
 
 public struct FileStorage {
     public var baseURL: URL!
-    
+
     public init() {
         baseURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     }

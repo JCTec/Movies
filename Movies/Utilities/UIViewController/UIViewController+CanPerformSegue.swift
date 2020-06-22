@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension UIViewController {
-    
+
     /**
      Checks whether controller can perform specific segue or not.
      - parameter identifier: Identifier of UIStoryboardSegue.

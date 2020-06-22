@@ -18,7 +18,7 @@ public class FavouriteViewModel: NSObject {
 // MARK: - Output
 @available(iOS 13.0, *)
 extension FavouriteViewModel {
-    
+
     public func getFavourites(completed: @escaping ([Movie]) -> Void) {
         API.movie.allfavourite { (result) in
             switch result {

@@ -18,7 +18,7 @@ class API {
             API.settings.apiKey
     */
     static let settings: APISettings = APISettings()
-    
+
     /**
         The singleton representing individual movie API calls and API functions.
 
@@ -27,7 +27,7 @@ class API {
             API.movie.find(id: 1234) {}
     */
     static let movie: MovieAPI = MovieAPI()
-    
+
     /**
         The singleton representing the list of movies this class contains API calls and API functions.
 
@@ -36,7 +36,7 @@ class API {
             API.movie.search(query: "search query") {}
     */
     static let lists: MovieListAPI = MovieListAPI()
-    
+
     /**
         The singleton that contains API calls and API functions for the Genre model.
 

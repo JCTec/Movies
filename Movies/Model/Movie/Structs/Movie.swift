@@ -36,6 +36,7 @@ public struct Movie: Codable {
     public let video: Bool?
     public let voteAverage: Double?
     public let voteCount: Int?
+    public let credits: Credits?
 
     enum CodingKeys: String, CodingKey {
         case adult = "adult"
@@ -64,21 +65,22 @@ public struct Movie: Codable {
         case video = "video"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case credits = "credits"
     }
-    
+
     public func posterURL(size: PosterSize) -> URL? {
         return URL(string: "https://image.tmdb.org/t/p/\(size.rawValue)\(posterPath ?? "")\(API.settings.apiKey)")
     }
-    
+
     public func genre() -> String {
         return (genres?.map { $0.name ?? "" } ?? [String]()).joined(separator: " | ")
     }
-    
+
     public func productionCompaniesString() -> String {
         return (productionCompanies?.map { $0.name ?? "" } ?? [String]()).joined(separator: " | ")
     }
 
-    public init(id: Int, adult: Bool?, backdropPath: String?, belongsToCollection: BelongsToCollection?, budget: Int?, genreIDs: [Int]?, genres: [Genre]?, homepage: String?, imdbID: String?, originalLanguage: String?, originalTitle: String?, overview: String?, popularity: Double?, posterPath: String?, productionCompanies: [ProductionCompany]?, productionCountries: [ProductionCountry]?, releaseDate: String?, revenue: Int?, runtime: Int?, spokenLanguages: [SpokenLanguage]?, status: String?, tagline: String?, title: String?, video: Bool?, voteAverage: Double?, voteCount: Int?) {
+    public init(id: Int, adult: Bool?, backdropPath: String?, belongsToCollection: BelongsToCollection?, budget: Int?, genreIDs: [Int]?, genres: [Genre]?, homepage: String?, imdbID: String?, originalLanguage: String?, originalTitle: String?, overview: String?, popularity: Double?, posterPath: String?, productionCompanies: [ProductionCompany]?, productionCountries: [ProductionCountry]?, releaseDate: String?, revenue: Int?, runtime: Int?, spokenLanguages: [SpokenLanguage]?, status: String?, tagline: String?, title: String?, video: Bool?, voteAverage: Double?, voteCount: Int?, credits: Credits?) {
         self.id = id
         self.adult = adult
         self.backdropPath = backdropPath
@@ -105,20 +107,93 @@ public struct Movie: Codable {
         self.video = video
         self.voteAverage = voteAverage
         self.voteCount = voteCount
+        self.credits = credits
     }
 }
 
-class MovieCache: Cacheable {
-    let id: Int!
+// MARK: - Credits
+public struct Credits: Codable {
+    public let cast: [Cast]
+    public let crew: [Crew]
+
+    enum CodingKeys: String, CodingKey {
+        case cast
+        case crew
+    }
+
+    public init(cast: [Cast], crew: [Crew]) {
+        self.cast = cast
+        self.crew = crew
+    }
+}
+
+// MARK: - Cast
+public struct Cast: Codable {
+    public let castID: Int
+    public let character: String
+    public let creditID: String
+    public let gender: Int
+    public let id: Int
+    public let name: String
+    public let order: Int
+    public let profilePath: String?
     
-    public init(id: Int) {
+    public func posterURL(size: PosterSize) -> URL? {
+        return URL(string: "https://image.tmdb.org/t/p/\(size.rawValue)\(profilePath ?? "")\(API.settings.apiKey)")
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case castID = "cast_id"
+        case character = "character"
+        case creditID = "credit_id"
+        case gender = "gender"
+        case id = "id"
+        case name = "name"
+        case order = "order"
+        case profilePath = "profile_path"
+    }
+
+    public init(castID: Int, character: String, creditID: String, gender: Int, id: Int, name: String, order: Int, profilePath: String?) {
+        self.castID = castID
+        self.character = character
+        self.creditID = creditID
+        self.gender = gender
         self.id = id
+        self.name = name
+        self.order = order
+        self.profilePath = profilePath
     }
-    
-    public func cacheKey() -> String {
-        return "Cache-Movie:\("\(id ?? 0)".SHA1())"
+}
+
+// MARK: - Crew
+public struct Crew: Codable {
+    public let creditID: String
+    public let department: String
+    public let gender: Int
+    public let id: Int
+    public let job: String
+    public let name: String
+    public let profilePath: String?
+
+    enum CodingKeys: String, CodingKey {
+        case creditID = "credit_id"
+        case department = "department"
+        case gender = "gender"
+        case id = "id"
+        case job = "job"
+        case name = "name"
+        case profilePath = "profile_path"
     }
-    
+
+    public init(creditID: String, department: String, gender: Int, id: Int, job: String, name: String, profilePath: String?) {
+        self.creditID = creditID
+        self.department = department
+        self.gender = gender
+        self.id = id
+        self.job = job
+        self.name = name
+        self.profilePath = profilePath
+    }
 }
 
 // MARK: - BelongsToCollection

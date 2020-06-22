@@ -19,23 +19,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sectionCell" id="Eba-vJ-69h" customClass="SectionCollectionViewCell" customModule="Movies" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="380" height="352"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="428"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="3do-yr-Wts">
-                <rect key="frame" x="0.0" y="0.0" width="380" height="352"/>
+                <rect key="frame" x="0.0" y="0.0" width="380" height="428"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest Movies" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oW-65-54h">
-                        <rect key="frame" x="25" y="10" width="102.5" height="20"/>
+                        <rect key="frame" x="25" y="10" width="102.5" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="KvX-Kh-KJu"/>
+                            <constraint firstAttribute="height" constant="25" id="KvX-Kh-KJu"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No hay problema que no podamos resolver juntos. Las mejores mentorias grupales para ti." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N73-5T-ozt">
-                        <rect key="frame" x="25" y="45" width="335" height="40"/>
+                        <rect key="frame" x="25" y="40" width="335" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" placeholder="YES" id="0gI-Je-95R"/>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="xDB-SB-hzk"/>
@@ -45,10 +45,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aBp-Pm-JyS">
-                        <rect key="frame" x="0.0" y="100" width="380" height="300"/>
+                        <rect key="frame" x="0.0" y="95" width="380" height="330"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="300" id="F0c-tu-hXP"/>
+                            <constraint firstAttribute="height" constant="330" id="F0c-tu-hXP"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="68X-v6-jX6">
                             <size key="itemSize" width="50" height="50"/>
@@ -59,7 +59,7 @@
                         <cells/>
                     </collectionView>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gEq-qv-6c9">
-                        <rect key="frame" x="170" y="230" width="40" height="40"/>
+                        <rect key="frame" x="170" y="240" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="VWO-MN-GA0"/>
                             <constraint firstAttribute="height" constant="40" id="zoL-c9-eEs"/>
@@ -67,7 +67,7 @@
                         <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </activityIndicatorView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="692-N3-my4">
-                        <rect key="frame" x="15" y="10" width="2" height="20"/>
+                        <rect key="frame" x="15" y="10" width="2" height="25"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="2" id="i6p-fH-Ecm"/>
@@ -80,7 +80,7 @@
                     <constraint firstItem="7oW-65-54h" firstAttribute="top" secondItem="3do-yr-Wts" secondAttribute="top" constant="10" id="GAn-ez-3Rs"/>
                     <constraint firstItem="7oW-65-54h" firstAttribute="leading" secondItem="3do-yr-Wts" secondAttribute="leading" constant="25" id="JMT-hI-6n8"/>
                     <constraint firstItem="aBp-Pm-JyS" firstAttribute="top" secondItem="N73-5T-ozt" secondAttribute="bottom" constant="15" id="Jam-O4-kJp"/>
-                    <constraint firstItem="N73-5T-ozt" firstAttribute="top" secondItem="7oW-65-54h" secondAttribute="bottom" constant="15" id="LIm-CR-g7y"/>
+                    <constraint firstItem="N73-5T-ozt" firstAttribute="top" secondItem="7oW-65-54h" secondAttribute="bottom" constant="5" id="LIm-CR-g7y"/>
                     <constraint firstAttribute="trailing" secondItem="aBp-Pm-JyS" secondAttribute="trailing" id="TIK-zO-sol"/>
                     <constraint firstAttribute="trailing" secondItem="N73-5T-ozt" secondAttribute="trailing" constant="20" id="Wky-7B-MgH"/>
                     <constraint firstItem="gEq-qv-6c9" firstAttribute="centerY" secondItem="aBp-Pm-JyS" secondAttribute="centerY" id="dFY-Nh-Dtp"/>
@@ -91,7 +91,7 @@
                     <constraint firstItem="gEq-qv-6c9" firstAttribute="centerX" secondItem="3do-yr-Wts" secondAttribute="centerX" id="xtW-To-ldi"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="380" height="352"/>
+            <size key="customSize" width="380" height="428"/>
             <connections>
                 <outlet property="activityIndicator" destination="gEq-qv-6c9" id="1u8-fR-JAP"/>
                 <outlet property="collectionView" destination="aBp-Pm-JyS" id="dPG-aL-cpl"/>
@@ -99,7 +99,7 @@
                 <outlet property="supportingLine" destination="692-N3-my4" id="qZL-g5-Hlt"/>
                 <outlet property="titleLabel" destination="7oW-65-54h" id="xUL-ko-bUB"/>
             </connections>
-            <point key="canvasLocation" x="243.47826086956525" y="121.20535714285714"/>
+            <point key="canvasLocation" x="244.92753623188409" y="150.66964285714286"/>
         </collectionViewCell>
     </objects>
 </document>

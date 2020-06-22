@@ -13,7 +13,7 @@ import CoreData
 
 // MARK: - MovieAPI Extension
 extension MovieAPI {
-    
+
     /**
         The favourite function check if a movie is in your favourite database.
 
@@ -32,7 +32,7 @@ extension MovieAPI {
             return false
         }
     }
-    
+
     /**
         The favourite function gets a movie in from favourite database.
 
@@ -44,14 +44,14 @@ extension MovieAPI {
     func get(_ movie: Movie) -> FavouriteMovie? {
         do {
             let results: [FavouriteMovie] = try NSManagedObject.query(table: "FavouriteMovie", searchPredicate: NSPredicate(format: "ANY movieID IN %@", [movie.id]))
-            
+
             return results.first
         } catch let error {
             debugPrint(error)
             return nil
         }
     }
-    
+
     /**
         The favourite function saves a movie in your favourite database.
 
@@ -69,12 +69,12 @@ extension MovieAPI {
                     completed(.failure(ImplementationError.dataError))
                     return
                 }
-                
+
                 let movieRecord = FavouriteMovie(context: context)
                 movieRecord.movieID = Int64(movie.id)
                 movieRecord.data = data
                 movieRecord.favourite = true
-                
+
                 try context.save()
                 completed(.success(movieRecord))
             } catch let error {
@@ -83,7 +83,7 @@ extension MovieAPI {
             }
         }
     }
-    
+
     /**
         The unfavourite function deletes a movie in your unfavourite database.
 
@@ -97,7 +97,7 @@ extension MovieAPI {
             do {
                 let context = AppDelegate.current().persistentContainer.viewContext
                 movie.favourite = false
-                
+
                 try context.save()
                 completed(.success(movie))
             } catch let error {
@@ -106,7 +106,7 @@ extension MovieAPI {
             }
         }
     }
-    
+
     /**
         The allfavourite function gets all the movies in your favourite database.
 
@@ -116,7 +116,7 @@ extension MovieAPI {
     */
     @available(iOS 13.0, *)
     func allfavourite(completed: @escaping (Result<[Movie], Error>) -> Void) {
-        
+
         DispatchQueue.main.async {
             do {
                 let results: [FavouriteMovie] = try NSManagedObject.query(table: "FavouriteMovie", searchPredicate: NSPredicate(format: "ANY favourite == %@", "1"))
@@ -127,7 +127,6 @@ extension MovieAPI {
                 completed(.failure(error))
             }
         }
-        
+
     }
 }
-

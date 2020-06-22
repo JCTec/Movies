@@ -14,8 +14,8 @@ public struct Genre: Codable {
     public let name: String?
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case name = "name"
+        case id
+        case name
     }
 
     public init(id: Int, name: String?) {
@@ -26,11 +26,11 @@ public struct Genre: Codable {
 
 class GenreCache: Cacheable {
     public let id: Int
-    
+
     public init(id: Int) {
         self.id = id
     }
-    
+
     public func cacheKey() -> String {
         return "Cache-Genre:\("\(id)".SHA1())"
     }

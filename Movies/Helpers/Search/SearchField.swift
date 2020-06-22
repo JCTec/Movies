@@ -14,7 +14,7 @@ public protocol SearchFieldDelegate: class {
 }
 
 public class SearchField: UIView {
-    
+
     public var placeholderText: String!
     public var searchImage: UIImage!
     public var background: UIColor!
@@ -29,10 +29,10 @@ public class SearchField: UIView {
     private var verticalBottomViewForClear: UIView!
 
     public weak var delegate: SearchFieldDelegate?
-    
+
     public init(placeholderText: String, searchImage: UIImage = #imageLiteral(resourceName: "search.pdf"), background: UIColor = .white, clearImage: UIImage = #imageLiteral(resourceName: "exit")) {
         super.init(frame: CGRect.zero)
-        
+
         self.placeholderText = placeholderText
         self.searchImage = searchImage
         self.background = background
@@ -41,34 +41,34 @@ public class SearchField: UIView {
         isOpaque = false
         backgroundColor = .clear
         translatesAutoresizingMaskIntoConstraints = false
-        
+
         containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-    
+
         addSubview(containerView)
-        
+
         containerView.backgroundColor = background
         containerView.layer.cornerRadius = 15.0
-        
+
         searchImageView = UIImageView(image: searchImage)
         searchImageView.translatesAutoresizingMaskIntoConstraints = false
         searchImageView.contentMode = .scaleAspectFit
-        
+
         let clearText = UITapGestureRecognizer(target: self, action: #selector(didSelectClear))
         clearText.cancelsTouchesInView = true
-        
+
         clearImageView = UIImageView(image: clearImage)
         clearImageView.translatesAutoresizingMaskIntoConstraints = false
         clearImageView.contentMode = .scaleAspectFit
         clearImageView.isUserInteractionEnabled = true
         clearImageView.addGestureRecognizer(clearText)
-        
+
         verticalTopViewForClear = UIView()
         verticalTopViewForClear.backgroundColor = .clear
-        
+
         verticalBottomViewForClear = UIView()
         verticalBottomViewForClear.backgroundColor = .clear
-        
+
         verticalStackForClear = UIStackView(arrangedSubviews: [
             verticalTopViewForClear,
             clearImageView,
@@ -88,63 +88,63 @@ public class SearchField: UIView {
             NSAttributedString.Key.foregroundColor: UIColor.gray,
             NSAttributedString.Key.font: Raleway.regular.font(size: 15)
         ])
-        
+
         mainStack = UIStackView(arrangedSubviews: [searchImageView, textField, verticalStackForClear])
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         mainStack.axis = .horizontal
         mainStack.spacing = 6.0
         containerView.addSubview(mainStack)
-        
+
         ShadowHelper.setShadow(to: containerView)
-                
+
         addConstraints()
-        
+
         clearImageView.isHidden = true
     }
 
     required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
     }
-    
+
     public func mainTextField() -> UITextField {
         return textField
     }
-    
+
     public func getText() -> String {
         let text = textField.text?.trim() ?? ""
         return text
     }
-    
+
     @objc public func didChangeText() {
         if (textField.text ?? "").isEmpty {
             clearImageView.isHidden = true
         } else {
             clearImageView.isHidden = false
         }
-        
+
         delegate?.didChangeText()
     }
-    
+
     @objc public func didSelectClear() {
         textField.text = ""
         clearImageView.isHidden = true
         delegate?.didClearText()
     }
-    
+
     public func addConstraints() {
         NSLayoutConstraint.activate([
             searchImageView.heightAnchor.constraint(equalTo: mainStack.heightAnchor, constant: 0.0),
             searchImageView.widthAnchor.constraint(equalToConstant: 20.0),
-            
+
             verticalStackForClear.widthAnchor.constraint(equalToConstant: 20.0),
 
             textField.heightAnchor.constraint(equalTo: mainStack.heightAnchor, constant: 0.0),
-            
+
             containerView.topAnchor.constraint(equalTo: topAnchor, constant: 10.0),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10.0),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10.0),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10.0),
-            
+
             mainStack.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 2.0),
             mainStack.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -2.0),
             mainStack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10.0),
