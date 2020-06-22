@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+public extension String {
+    
+    func equals(_ other: String) -> Bool {
+        return self == other
+    }
+    
+}

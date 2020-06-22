@@ -12,15 +12,14 @@ import Foundation
 public class MovieViewModel: NSObject {
     public weak var delegate: ErrorHandler?
     
-    public let fullHeart: UIImage = #imageLiteral(resourceName: "heartFull")
-    public let hearth: UIImage = #imageLiteral(resourceName: "heart")
+    public static let fullHeart: UIImage = #imageLiteral(resourceName: "heartFull")
+    public static let hearth: UIImage = #imageLiteral(resourceName: "heart")
     
     private var movie: Movie!
 
     public init(movie: Movie) {
         super.init()
         self.movie = movie
-    
     }
 
 }
@@ -38,9 +37,9 @@ extension MovieViewModel {
         
         if #available(iOS 13.0, *) {
             if API.movie.isFavourite(movie) {
-                cell.likeImage.image = fullHeart
+                cell.likeImage.image = MovieViewModel.fullHeart
             }else {
-                cell.likeImage.image = hearth
+                cell.likeImage.image = MovieViewModel.hearth
             }
         } else {
             cell.likeView.isHidden = true

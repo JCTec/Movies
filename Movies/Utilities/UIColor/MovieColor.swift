@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+public class MovieStaticColors {
+    public static let yellow: UIColor = UIColor(hex: 0xFDC700)
+    public static let darkShadow: UIColor = .darkGray
+}

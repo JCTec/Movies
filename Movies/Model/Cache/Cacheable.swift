@@ -1,5 +1,5 @@
 //
-//   Cacheable.swift
+//  Cacheable.swift
 //  Movies
 //
 //  Created by Juan Carlos on 22/06/20.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+public protocol Cacheable {
+    func cacheKey() -> String
+}

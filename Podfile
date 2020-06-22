@@ -6,14 +6,11 @@ target 'Movies' do
   use_frameworks!
 
   # Pods for Movies
-
-  target 'MoviesTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'MoviesUITests' do
-    # Pods for testing
-  end
-
+  pod 'SDWebImage'
+  pod 'lottie-ios'
+  pod 'IQKeyboardManagerSwift'
+  pod 'ViewAnimator'
+  pod 'UIScrollView-InfiniteScroll'
+  pod 'SkeletonView'
+  
 end

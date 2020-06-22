@@ -9,6 +9,13 @@
 import Foundation
 
 class APISettings {
+    /**
+        The Movie Database Key  Variable of String type with its complement var name, to be add in a URL
+
+        An example use of APY Key:
+
+            return "?api_key=\(apiKeyStr)"
+    */
     private var apiKeyStr: String = ""
         
     /**
@@ -27,4 +34,13 @@ class APISettings {
             apiKeyStr = newValue
         }
     }
+    
+    /**
+        The API cache with filestorage implementation.
+
+        An example use of APY Key:
+
+            API.settings.cache.load(obj)
+    */
+    public let cache = Cache()
 }

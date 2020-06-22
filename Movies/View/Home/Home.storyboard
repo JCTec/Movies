@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tDw-28-PTa">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="adq-7S-lmI">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -9,19 +9,63 @@
     </dependencies>
     <scenes>
         <!--Home View Controller-->
-        <scene sceneID="d37-5P-uvi">
+        <scene sceneID="bfl-60-Pnq">
             <objects>
-                <viewController id="tDw-28-PTa" customClass="HomeViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Dfs-AH-r5o">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <viewController id="adq-7S-lmI" customClass="HomeViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RGj-6s-yFh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MRL-u1-Y7d">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nIV-Ag-hjI">
+                                    <size key="itemSize" width="375" height="246"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Qea-0B-IMr"/>
+                        <constraints>
+                            <constraint firstItem="ed5-sK-3jH" firstAttribute="bottom" secondItem="MRL-u1-Y7d" secondAttribute="bottom" id="9qW-E7-9R0"/>
+                            <constraint firstItem="MRL-u1-Y7d" firstAttribute="leading" secondItem="ed5-sK-3jH" secondAttribute="leading" id="ck5-1f-Lei"/>
+                            <constraint firstItem="MRL-u1-Y7d" firstAttribute="trailing" secondItem="ed5-sK-3jH" secondAttribute="trailing" id="odk-rb-HrK"/>
+                            <constraint firstItem="MRL-u1-Y7d" firstAttribute="top" secondItem="ed5-sK-3jH" secondAttribute="top" id="vkm-gp-UvS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ed5-sK-3jH"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="MRL-u1-Y7d" id="hdU-sX-jdn"/>
+                        <segue destination="mEe-Dx-5dK" kind="show" identifier="searchSegue" id="3LE-QY-I1u"/>
+                        <segue destination="aX9-jS-1mn" kind="show" identifier="detailSegue" id="ArK-vm-jbb"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rbq-mm-ThX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xnr-bq-fa9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="-184"/>
+            <point key="canvasLocation" x="644" y="-243.32833583208398"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="C92-Zc-Uei">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Detail" id="aX9-jS-1mn" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="a8I-un-W0P"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7OC-vE-LcR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1248" y="-375"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="4ED-Sq-cp5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="mEe-Dx-5dK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="OaY-OL-SW4"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXG-YR-Zog" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1255" y="-244"/>
         </scene>
     </scenes>
 </document>

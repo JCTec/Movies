@@ -8,12 +8,15 @@
 
 import UIKit
 import CoreData
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        IQKeyboardManager.shared.enable = true
         API.settings.apiKey = "4cb1eeab94f45affe2536f2c684a5c9e"
         
         return true
@@ -46,6 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentCloudKitContainer(name: "Movies")
+        
+        guard let description = container.persistentStoreDescriptions.first else {
+            fatalError("No Descriptions found")
+        }
+        
+        description.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -62,6 +72,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.processUpdate), name: .NSPersistentStoreRemoteChange, object: nil)
+        
         return container
     }()
 
@@ -80,6 +96,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    @available(iOS 13.0, *)
+    @objc
+    func processUpdate(notification: NSNotification) {
+        operationQueue.addOperation {
+            // get our context
+            let context = self.persistentContainer.newBackgroundContext()
+            context.performAndWait {
+                // get list items out of store
+                /*var items: [FavouriteMovie] = [FavouriteMovie]()
+                
+                do {
+                    try items = context.fetch(FavouriteMovie.getMoviesFetchRequest())
+                } catch {
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }*/
+                
+                // save if we need to save
+                if context.hasChanges {
+                    do {
+                        try context.save()
+                    } catch {
+                        let nserror = error as NSError
+                        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    lazy var operationQueue: OperationQueue = {
+       var queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
+    static func current() -> AppDelegate {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return AppDelegate()
+        }
+        
+        return appDelegate
     }
 
 }

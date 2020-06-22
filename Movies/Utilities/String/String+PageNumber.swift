@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+extension String {
+    static func page(_ number: Int, divider: String = "&") -> String{
+        return "\(divider)page=\(number)"
+    }
+}

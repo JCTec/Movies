@@ -7,98 +7,111 @@
 //
 
 import Foundation
+import UIKit
 
+// MARK: - InteractiveDownloadHandler
+public protocol InteractiveDownloadHandler: ErrorHandler {
+    func nextPage(completed: @escaping ([Movie]) -> Void, error: @escaping (Error) -> Void)
+    func didSelect(movie: Movie)
+}
 
-
-// MARK: - SectionViewModel
+// MARK: - MovieListViewModel
 public class MovieListViewModel: NSObject {
-    public weak var delegate: DownloadFirstPageHandler?
+    public static let collectionViewTag: Int = 97
+
+    public weak var delegate: InteractiveDownloadHandler?
+    public weak var collectionView: UICollectionView!
     
-    private var section: Section!
-    private var page: Int = 1
+    private var movies: [Movie] = [Movie]()
     
-    public init(section: Section, delegate: SectionViewModelDelegate) {
-        super.init()
-        self.section = section
-        self.delegate = delegate
-        
-        startDownload()
+    public init(movies: [Movie]) {
+        self.movies = movies
     }
-
-    private func startDownload() {
-        self.delegate?.didStartDownloadingFirstPage()
-
-        DispatchQueue.main.async {
-            self.nextPage { (movies) in
-                self.delegate?.didFinishDownloadingFirstPage(movies: movies)
+    
+    public func getCollectionView(width: CGFloat) -> UICollectionView {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.tag = MovieListViewModel.collectionViewTag
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.register(HorizontalMovieCollectionViewCell.nib, forCellWithReuseIdentifier: HorizontalMovieCollectionViewCell.identifier)
+        
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: width, height: 250.0)
+        }
+        
+        collectionView.addInfiniteScroll { (collectionView) in
+            if let delegate = self.delegate {
+                delegate.nextPage(completed: { (movies) in
+                    DispatchQueue.main.async {
+                        self.movies += movies
+                        self.collectionView.reloadData()
+                        collectionView.finishInfiniteScroll()
+                    }
+                }, error: { (error) in
+                    debugPrint(error)
+                    collectionView.finishInfiniteScroll()
+                })
+            }else {
+                collectionView.finishInfiniteScroll()
             }
         }
         
+        self.collectionView = collectionView
+        return collectionView
     }
+
 }
 
-// MARK: - Output
-extension SectionViewModel {
+// MARK: - UICollectionViewDelegate
+extension MovieListViewModel: UICollectionViewDelegate {
     
-    public func configure(cell: VerticalMovieCollectionViewCell, with movie: Movie) -> VerticalMovieCollectionViewCell {
-        cell.movieTitleLabel.text = movie.title
-        cell.movieRatingsLabel.text = "\(movie.voteAverage ?? 0.0)"
-        cell.animationView.isHidden = false
-        cell.animationView.play()
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+}
 
-        guard let url = movie.posterURL(size: .original) else {
-            return cell
-        }
+// MARK: - UICollectionViewDataSource
+extension MovieListViewModel: UICollectionViewDataSource {
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelect(movie: movies[indexPath.row])
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        ImageHelper.setImageTo(cell.moviePosterImageView, with: url) {
-            cell.animationView.isHidden = true
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalMovieCollectionViewCell.identifier, for: indexPath) as? HorizontalMovieCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.movie = movies[indexPath.row]
         
         return cell
     }
     
-    public func nextPage(completed: @escaping ([Movie]) -> Void) {
-        API.lists.ofType(page, type) { (result) in
-            switch result {
-                case .success(let movies):
-                    self.page += 1
-                    completed(movies)
-                case .failure(let error):
-                    debugPrint(error)
-                    completed([Movie]())
-                    self.delegate?.didFinishUpdatingWith(error)
-            }
-        }
-    }
-    
-    public var title: String {
-        get {
-            return section.title
-        }
-        
-        set {
-            fatalError("Title is a get-only property")
-        }
-    }
-    
-    public var subtitle: String {
-        get {
-            return section.subtitle
-        }
-        
-        set {
-            fatalError("Subtitle is a get-only property")
-        }
-    }
-    
-    public var type: MovieListIdentifier {
-        get {
-            return section.type
-        }
-        
-        set {
-            fatalError("Type is a get-only property")
-        }
-    }
+}
 
+// MARK: - UICollectionViewDelegate
+extension MovieListViewModel: UICollectionViewDelegateFlowLayout {
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    }
 }

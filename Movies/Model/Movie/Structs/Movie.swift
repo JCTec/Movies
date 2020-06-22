@@ -15,7 +15,8 @@ public struct Movie: Codable {
     public let backdropPath: String?
     public let belongsToCollection: BelongsToCollection?
     public let budget: Int?
-    public let genres: [Genre]?
+    public let genreIDs: [Int]?
+    public var genres: [Genre]?
     public let homepage: String?
     public let imdbID: String?
     public let originalLanguage: String?
@@ -41,6 +42,7 @@ public struct Movie: Codable {
         case backdropPath = "backdrop_path"
         case belongsToCollection = "belongs_to_collection"
         case budget = "budget"
+        case genreIDs = "genre_ids"
         case genres = "genres"
         case homepage = "homepage"
         case id = "id"
@@ -63,13 +65,26 @@ public struct Movie: Codable {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
     }
+    
+    public func posterURL(size: PosterSize) -> URL? {
+        return URL(string: "https://image.tmdb.org/t/p/\(size.rawValue)\(posterPath ?? "")\(API.settings.apiKey)")
+    }
+    
+    public func genre() -> String {
+        return (genres?.map { $0.name ?? "" } ?? [String]()).joined(separator: " | ")
+    }
+    
+    public func productionCompaniesString() -> String {
+        return (productionCompanies?.map { $0.name ?? "" } ?? [String]()).joined(separator: " | ")
+    }
 
-    public init(id: Int, adult: Bool?, backdropPath: String?, belongsToCollection: BelongsToCollection?, budget: Int?, genres: [Genre]?, homepage: String?, imdbID: String?, originalLanguage: String?, originalTitle: String?, overview: String?, popularity: Double?, posterPath: String?, productionCompanies: [ProductionCompany]?, productionCountries: [ProductionCountry]?, releaseDate: String?, revenue: Int?, runtime: Int?, spokenLanguages: [SpokenLanguage]?, status: String?, tagline: String?, title: String?, video: Bool?, voteAverage: Double?, voteCount: Int?) {
+    public init(id: Int, adult: Bool?, backdropPath: String?, belongsToCollection: BelongsToCollection?, budget: Int?, genreIDs: [Int]?, genres: [Genre]?, homepage: String?, imdbID: String?, originalLanguage: String?, originalTitle: String?, overview: String?, popularity: Double?, posterPath: String?, productionCompanies: [ProductionCompany]?, productionCountries: [ProductionCountry]?, releaseDate: String?, revenue: Int?, runtime: Int?, spokenLanguages: [SpokenLanguage]?, status: String?, tagline: String?, title: String?, video: Bool?, voteAverage: Double?, voteCount: Int?) {
         self.id = id
         self.adult = adult
         self.backdropPath = backdropPath
         self.belongsToCollection = belongsToCollection
         self.budget = budget
+        self.genreIDs = genreIDs
         self.genres = genres
         self.homepage = homepage
         self.imdbID = imdbID
@@ -93,6 +108,19 @@ public struct Movie: Codable {
     }
 }
 
+class MovieCache: Cacheable {
+    let id: Int!
+    
+    public init(id: Int) {
+        self.id = id
+    }
+    
+    public func cacheKey() -> String {
+        return "Cache-Movie:\("\(id ?? 0)".SHA1())"
+    }
+    
+}
+
 // MARK: - BelongsToCollection
 public struct BelongsToCollection: Codable {
     public let id: Int
@@ -112,22 +140,6 @@ public struct BelongsToCollection: Codable {
         self.name = name
         self.posterPath = posterPath
         self.backdropPath = backdropPath
-    }
-}
-
-// MARK: - Genre
-public struct Genre: Codable {
-    public let id: Int
-    public let name: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case name = "name"
-    }
-
-    public init(id: Int, name: String?) {
-        self.id = id
-        self.name = name
     }
 }
 

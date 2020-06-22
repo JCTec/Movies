@@ -7,3 +7,26 @@
 //
 
 import Foundation
+
+// MARK: - DownloadFirstPageHandler
+class SearchHelper {
+    
+    static let shared: SearchHelper = SearchHelper()
+    
+    private var searchValue: String = "Search"
+    
+    public var searchParam: String {
+        get {
+            return searchValue
+        }
+        
+        set {
+            searchValue = newValue
+        }
+    }
+    
+    private init() {
+        debugPrint("SearchHelper")
+    }
+    
+}

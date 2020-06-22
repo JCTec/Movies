@@ -9,16 +9,29 @@
 import Foundation
 import CloudKit
 
+// MARK: - MovieAPI
 class MovieAPI {
-    
-    internal let database: CKDatabase = CKContainer.default().privateCloudDatabase
     
     public init() {
         debugPrint("MovieListAPI")
     }
     
+    /**
+        The find function returns a movie given its database ID.
+
+        An example use of find:
+
+            API.movie.find(id: 1234) {}
+    */
     func find(id: Int, completed: @escaping (Result<Movie, Error>) -> Void) {
         let url = "https://api.themoviedb.org/3/movie/\(id)\(API.settings.apiKey)"
+        
+        let movieCacheKey = MovieCache(id: id)
+        
+        if let movieCache: Movie = API.settings.cache.load(movieCacheKey) {
+            completed(.success(movieCache))
+            return
+        }
         
         guard let urlRequest: URLRequest = API.urlRequest(url, httpMethod: .get) else {
             completed(.failure(ImplementationError.unrecognized))
@@ -50,6 +63,8 @@ class MovieAPI {
             do {
                 try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 let movie = try JSONDecoder().decode(Movie.self, from: data)
+                
+                API.settings.cache.save(movieCacheKey, data: data)
                 
                 completed(.success(movie))
             } catch let jsonError {

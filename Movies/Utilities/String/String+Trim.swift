@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+public extension String {
+    func trim() -> String {
+        return trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}

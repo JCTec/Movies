@@ -7,3 +7,15 @@
 //
 
 import Foundation
+import UIKit
+
+public extension UIViewController {
+    
+    func hideNavigationBar(animated: Bool = false) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    func showNavigationBar(animated: Bool = false) {
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+}

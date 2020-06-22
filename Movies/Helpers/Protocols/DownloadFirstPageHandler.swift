@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+public protocol DownloadFirstPageHandler: ErrorHandler {
+    func didStartDownloadingFirstPage()
+    func didFinishDownloadingFirstPage(movies: [Movie])
+}

@@ -1,3 +1,38 @@
-PODFILE CHECKSUM: 36000560969f4b87d1a4e1dd991b385dd9cdd34c
+PODS:
+  - IQKeyboardManagerSwift (6.5.5)
+  - lottie-ios (3.1.8)
+  - SDWebImage (5.8.1):
+    - SDWebImage/Core (= 5.8.1)
+  - SDWebImage/Core (5.8.1)
+  - SkeletonView (1.8.7)
+  - UIScrollView-InfiniteScroll (1.1.0)
+  - ViewAnimator (2.7.0)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - lottie-ios
+  - SDWebImage
+  - SkeletonView
+  - UIScrollView-InfiniteScroll
+  - ViewAnimator
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManagerSwift
+    - lottie-ios
+    - SDWebImage
+    - SkeletonView
+    - UIScrollView-InfiniteScroll
+    - ViewAnimator
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
+  SkeletonView: ba5370f41280b2f0a76918bb143c1294232bb4f4
+  UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
+  ViewAnimator: 5af1c6f3b310f012bf081259c43717aa54fbae73
+
+PODFILE CHECKSUM: 588763f89104b971f25e6d2ce83ec37cd5e5d4fc
 
 COCOAPODS: 1.9.1

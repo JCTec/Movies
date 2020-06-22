@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import UIKit
+
+public extension UIViewController {
+    func popViewController(animated: Bool = true) {
+        navigationController?.popViewController(animated: animated)
+    }
+}

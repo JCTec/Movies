@@ -8,19 +8,27 @@
 
 import Foundation
 
+// MARK: - MovieListAPI
 class MovieListAPI {
     
     public init() {
         debugPrint("MovieListAPI")
     }
     
-    func search(query: String, completed: @escaping (Result<[Movie], Error>) -> Void) {
+    /**
+        This functions lets you search a movie in the database given a String representing a Query.
+
+        An example use of search:
+
+            API.movie.search("Hello") {}
+    */
+    func search(_ page: Int = 1, query: String, completed: @escaping (Result<[Movie], Error>) -> Void) {
         guard let safeQuery = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
             completed(.failure(ImplementationError.urlError))
             return
         }
         
-        let url = "https://api.themoviedb.org/3/search/movie\(API.settings.apiKey)&query=\(safeQuery)"
+        let url = "https://api.themoviedb.org/3/search/movie\(API.settings.apiKey)&query=\(safeQuery)\(String.page(page))"
         
         guard let urlRequest: URLRequest = API.urlRequest(url, httpMethod: .get) else {
             completed(.failure(ImplementationError.unrecognized))
@@ -60,8 +68,15 @@ class MovieListAPI {
         }.resume()
     }
     
-    func ofType(_ type: MovieListIdentifier, completed: @escaping (Result<[Movie], Error>) -> Void) {
-        let url = "https://api.themoviedb.org/3/movie/\(type.rawValue)\(API.settings.apiKey)"
+    /**
+        This functions lets you get a list of movies depending of MovieListIdentifier.
+
+        An example use of ofType:
+
+            API.movie.ofType(.nowPlaying) {}
+    */
+    func ofType(page: Int = 1, _ type: MovieListIdentifier, completed: @escaping (Result<[Movie], Error>) -> Void) {
+        let url = "https://api.themoviedb.org/3/movie/\(type.rawValue)\(API.settings.apiKey)\(String.page(page))"
         
         guard let urlRequest: URLRequest = API.urlRequest(url, httpMethod: .get) else {
             completed(.failure(ImplementationError.unrecognized))

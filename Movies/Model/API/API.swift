@@ -8,10 +8,8 @@
 
 import Foundation
 
-
+// MARK: - API
 class API {
-    // MARK: - APISettings
-    
     /**
         The singleton representing settings utilized in the API calls and API functions.
 
@@ -21,25 +19,30 @@ class API {
     */
     static let settings: APISettings = APISettings()
     
-    // MARK: - MovieAPI
-    
     /**
         The singleton representing individual movie API calls and API functions.
 
-        An example use of settings:
+        An example use of movie:
 
             API.movie.find(id: 1234) {}
     */
     static let movie: MovieAPI = MovieAPI()
     
-    // MARK: - MovieListAPI
-    
     /**
         The singleton representing the list of movies this class contains API calls and API functions.
 
-        An example use of settings:
+        An example use of lists:
 
             API.movie.search(query: "search query") {}
     */
     static let lists: MovieListAPI = MovieListAPI()
+    
+    /**
+        The singleton that contains API calls and API functions for the Genre model.
+
+        An example use of genre:
+
+            API.genre.find(id: 123) {}
+    */
+    static let genre: GenreAPI = GenreAPI()
 }

@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum MovieListIdentifier: String {
+// MARK: - MovieListIdentifier
+public enum MovieListIdentifier: String {
     case latest = "latest"
     case nowPlaying = "now_playing"
     case popular = "popular"
